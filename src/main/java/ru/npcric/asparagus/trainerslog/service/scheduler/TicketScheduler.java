@@ -16,11 +16,11 @@ import ru.npcric.asparagus.trainerslog.adapter.repository.TicketRepository;
 import ru.npcric.asparagus.trainerslog.domain.StudentEntity;
 import ru.npcric.asparagus.trainerslog.domain.TicketEntity;
 import ru.npcric.asparagus.trainerslog.service.TicketService;
+import ru.npcric.asparagus.trainerslog.service.logger.Logger;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Log4j2
 @EnableAsync
 @Component
 @RequiredArgsConstructor
@@ -30,14 +30,16 @@ public class TicketScheduler {
     TicketService ticketService;
     TicketRepository ticketRepository;
 
+    private static final Logger logger = Logger.getInstance();
+
 
     @SchedulerLock(name = "UpdateAllTicketsStatus")
     //Каждые 10 минут
-    @Scheduled(cron = "0 */10 * * * *")
+    @Scheduled(cron = "0 */1 * * * *")
     @SneakyThrows
     @Transactional
     public void autoUpdateAllTicketsStatus() {
-        log.info("Scheduler updateAllTicketsStatus start");
+        logger.log("Scheduler updateAllTicketsStatus start");
         List<StudentEntity> students = studentRepository.findStudentsWithExpiredTickets(LocalDate.now());
         for (StudentEntity student : students) {
             int studentBalance = student.getBalance();
@@ -49,6 +51,6 @@ public class TicketScheduler {
             ticketRepository.delete(ticket);
         }
 
-        log.info("Scheduler updateAllTicketsStatus end");
+        logger.log("Scheduler updateAllTicketsStatus end");
     }
 }
