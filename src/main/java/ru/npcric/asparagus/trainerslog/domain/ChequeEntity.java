@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.npcric.asparagus.trainerslog.domain.common.BaseEntity;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 
 
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "cheque")
-public class ChequeEntity extends BaseEntity {
+public class ChequeEntity extends BaseEntity{
     @Column(name = "date")
     LocalDateTime date;
 
