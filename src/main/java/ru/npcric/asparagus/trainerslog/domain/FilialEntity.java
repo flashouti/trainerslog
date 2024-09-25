@@ -8,6 +8,7 @@ import ru.npcric.asparagus.trainerslog.domain.common.BaseEntity;
 import java.util.List;
 
 
+//Паттерн Static Fabric method
 @Getter
 @Setter
 @NoArgsConstructor
