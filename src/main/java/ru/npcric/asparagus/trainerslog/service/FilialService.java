@@ -24,7 +24,7 @@ public class FilialService {
 
     public FilialSmallResponse create(FilialDTO filialDTO) {
         FilialEntity.FilialContext context = filialFactory.createContext(filialDTO);
-        FilialEntity filialEntity = new FilialEntity(context);
+        FilialEntity filialEntity = FilialEntity.getFilialWithDefaultName(context);
         FilialEntity filialEntityWithId = filialRepository.save(filialEntity);
         FilialSmallResponse filialFullResponse = new FilialSmallResponse(
                 filialEntityWithId.getId(), filialEntity.getFilialName(), filialEntity.getAddress()
