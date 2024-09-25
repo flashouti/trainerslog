@@ -8,9 +8,9 @@ import ru.npcric.asparagus.trainerslog.domain.common.BaseEntity;
 import java.util.List;
 
 
+//Паттерн Static Fabric method
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "filial")
 @Entity
@@ -20,11 +20,17 @@ public class FilialEntity extends BaseEntity {
     String address;
     @OneToMany(mappedBy = "filial")
     List<CoachEntity> coachesInFilial;
-    public FilialEntity(FilialContext context) {
-        filialName = context.name;
-        address = context.address;
-        coachesInFilial = null;
+
+    private FilialEntity(String name, String address, List<CoachEntity> coachesInFilial){
+        this.filialName = name;
+        this.address = address;
+        this.coachesInFilial = coachesInFilial;
     }
+
+    public static FilialEntity getFilialWithDefaultName(FilialContext context){
+        return new FilialEntity("Школа Айкидо", context.address(), null);
+    }
+
     public record FilialContext(String name, String address) {
     }
 }
