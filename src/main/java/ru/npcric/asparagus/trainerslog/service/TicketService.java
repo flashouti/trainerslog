@@ -52,7 +52,29 @@ public class TicketService {
     }
 
     public TicketEntity getDefaultTicket() {
-        return ticketRepository.save(new TicketEntity(LocalDate.now(),
-                LocalDate.now().plusMonths(1), true, INITIAL_COST));
+        TicketEntity ticket = TicketEntity.builder()
+                .startDate(LocalDate.now())
+                .endDate(LocalDate.now().plusMonths(1))
+                .isExpired(true)
+                .paidAmount(INITIAL_COST)
+                .build();
+        return ticketRepository.save(ticket);
+    }
+
+    public TicketEntity getDefaultPaidTicket() {
+        TicketEntity ticket = TicketEntity.builder()
+                .startDate(LocalDate.now())
+                .endDate(LocalDate.now().plusMonths(1))
+                .paidAmount(0)
+                .build();
+        return ticketRepository.save(ticket);
+    }
+
+    public TicketEntity getOneTimeTicket() {
+        TicketEntity ticket = TicketEntity.builder()
+                .isExpired(true)
+                .paidAmount(0)
+                .build();
+        return ticketRepository.save(ticket);
     }
 }
