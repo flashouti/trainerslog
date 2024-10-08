@@ -17,6 +17,7 @@ import ru.npcric.asparagus.trainerslog.adapter.web.dto.response.user.UsernameRes
 import ru.npcric.asparagus.trainerslog.domain.CoachEntity;
 import ru.npcric.asparagus.trainerslog.domain.FilialEntity;
 import ru.npcric.asparagus.trainerslog.domain.StudentEntity;
+import ru.npcric.asparagus.trainerslog.domain.context.CoachContext;
 import ru.npcric.asparagus.trainerslog.domain.user.UserEntity;
 import ru.npcric.asparagus.trainerslog.domain.user.UserRole;
 import ru.npcric.asparagus.trainerslog.service.factory.CoachFactory;
@@ -34,7 +35,7 @@ public class CoachService {
     FilialRepository filialRepository;
 
     public CoachFullResponse createCoach(CoachDTO coachDTO) {
-        CoachEntity.CoachContext coachContext = coachFactory.createContext(coachDTO);
+        CoachContext coachContext = coachFactory.createContext(coachDTO);
         CoachEntity coachEntity = new CoachEntity(coachContext);
         CoachEntity coachEntityWithId = coachRepository.save(coachEntity);
         return new CoachFullResponse(coachEntityWithId.getId(),

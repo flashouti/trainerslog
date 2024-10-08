@@ -12,20 +12,22 @@ import ru.npcric.asparagus.trainerslog.adapter.web.errors.AlreadyExistException;
 import ru.npcric.asparagus.trainerslog.adapter.web.errors.UserNotFoundException;
 import ru.npcric.asparagus.trainerslog.domain.CoachEntity;
 import ru.npcric.asparagus.trainerslog.domain.FilialEntity;
+import ru.npcric.asparagus.trainerslog.domain.context.CoachContext;
 import ru.npcric.asparagus.trainerslog.domain.user.UserEntity;
 import ru.npcric.asparagus.trainerslog.domain.user.UserRole;
+import ru.npcric.asparagus.trainerslog.service.factory.common.BaseFactory;
 
 import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
-public class CoachFactory {
+public class CoachFactory implements BaseFactory<CoachDTO> {
     FilialRepository filialRepository;
     UserRepository userRepository;
 
-
-    public CoachEntity.CoachContext createContext(CoachDTO coachDTO) {
+    @Override
+    public CoachContext createContext(CoachDTO coachDTO) {
         FilialDTO filialDTO = coachDTO.filialDTO();
         String username = coachDTO.username();
 
@@ -40,7 +42,7 @@ public class CoachFactory {
         userEntity.getAuthorities().remove(UserRole.ROLE_DEFAULT);
         FilialEntity filialEntity = filialRepository.findByAddress(filialDTO.address());
 
-        CoachEntity.CoachContext context = new CoachEntity.CoachContext(coachDTO.name(), coachDTO.email(),
+       CoachContext context = new CoachContext(coachDTO.name(), coachDTO.email(),
                 coachDTO.phoneNumber(), coachDTO.sex(), coachDTO.birthDate(), filialEntity, userEntity);
         return context;
     }

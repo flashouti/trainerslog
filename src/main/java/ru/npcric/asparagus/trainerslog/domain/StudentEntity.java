@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 import ru.npcric.asparagus.trainerslog.domain.common.BaseEntity;
+import ru.npcric.asparagus.trainerslog.domain.context.StudentContext;
 import ru.npcric.asparagus.trainerslog.domain.user.UserEntity;
 
 import java.time.LocalDate;
@@ -55,32 +56,18 @@ public class StudentEntity extends BaseEntity {
     List<ChequeEntity> chequeEntities;
 
     public StudentEntity(StudentContext context) {
-        ticket = context.ticket;
-        fullName = context.fullName;
-        sex = context.sex;
-        birthDate = context.birthDate;
-        q = context.q;
-        phoneNumber = context.phoneNumber;
-        parentPhoneNumber = context.parentPhoneNumber;
-        parentFullName = context.parentFullName;
+        ticket = context.ticket();
+        fullName = context.fullName();
+        sex = context.sex();
+        birthDate = context.birthDate();
+        q = context.q();
+        phoneNumber = context.phoneNumber();
+        parentPhoneNumber = context.parentPhoneNumber();
+        parentFullName = context.parentFullName();
         group = null;
-        user = context.user;
+        user = context.user();
         balance = 0;
         chequeEntities = null;
-        eemail = context.eemail;
-    }
-
-    public record StudentContext(
-            TicketEntity ticket,
-            String fullName,
-            String sex,
-            LocalDate birthDate,
-            Integer q,
-            String phoneNumber,
-            String parentPhoneNumber,
-            String parentFullName,
-            String eemail,
-            UserEntity user
-    ) {
+        eemail = context.eemail();
     }
 }

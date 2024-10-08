@@ -10,6 +10,7 @@ import ru.npcric.asparagus.trainerslog.adapter.repository.FilialRepository;
 import ru.npcric.asparagus.trainerslog.adapter.web.dto.request.filial.FilialDTO;
 import ru.npcric.asparagus.trainerslog.adapter.web.dto.response.filial.FilialSmallResponse;
 import ru.npcric.asparagus.trainerslog.domain.FilialEntity;
+import ru.npcric.asparagus.trainerslog.domain.context.FilialContext;
 import ru.npcric.asparagus.trainerslog.service.factory.FilialFactory;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class FilialService {
     FilialFactory filialFactory;
 
     public FilialSmallResponse create(FilialDTO filialDTO) {
-        FilialEntity.FilialContext context = filialFactory.createContext(filialDTO);
+        FilialContext context = filialFactory.createContext(filialDTO);
         FilialEntity filialEntity = FilialEntity.getFilialWithDefaultName(context);
         FilialEntity filialEntityWithId = filialRepository.save(filialEntity);
         FilialSmallResponse filialFullResponse = new FilialSmallResponse(

@@ -6,14 +6,17 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;
 import ru.npcric.asparagus.trainerslog.adapter.web.dto.request.filial.FilialDTO;
 import ru.npcric.asparagus.trainerslog.domain.FilialEntity;
+import ru.npcric.asparagus.trainerslog.domain.context.FilialContext;
+import ru.npcric.asparagus.trainerslog.service.factory.common.BaseFactory;
 
 @Component
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
-public class FilialFactory {
+public class FilialFactory implements BaseFactory<FilialDTO> {
 
-    public FilialEntity.FilialContext createContext(FilialDTO filialDTO) {
-        FilialEntity.FilialContext filialContext = new FilialEntity.FilialContext(filialDTO.name(), filialDTO.address());
+    @Override
+    public FilialContext createContext(FilialDTO filialDTO) {
+        FilialContext filialContext = new FilialContext(filialDTO.name(), filialDTO.address());
         return filialContext;
     }
 }

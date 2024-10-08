@@ -17,6 +17,7 @@ import ru.npcric.asparagus.trainerslog.adapter.web.errors.UserNotFoundException;
 import ru.npcric.asparagus.trainerslog.domain.ChequeEntity;
 import ru.npcric.asparagus.trainerslog.domain.GroupEntity;
 import ru.npcric.asparagus.trainerslog.domain.StudentEntity;
+import ru.npcric.asparagus.trainerslog.domain.context.StudentContext;
 import ru.npcric.asparagus.trainerslog.domain.user.UserEntity;
 import ru.npcric.asparagus.trainerslog.service.factory.StudentFactory;
 import ru.npcric.asparagus.trainerslog.service.mapper.ChequeMapper;
@@ -38,7 +39,7 @@ public class StudentService {
     ChequeMapper chequeMapper;
 
     public StudentCreateResponse createStudent(StudentDTO studentDTO) {
-        StudentEntity.StudentContext context = studentFactory.createContext(studentDTO);
+        StudentContext context = studentFactory.createContext(studentDTO);
 
         StudentEntity student = new StudentEntity(context);
         StudentEntity studentEntityWithId = studentRepository.save(student);
