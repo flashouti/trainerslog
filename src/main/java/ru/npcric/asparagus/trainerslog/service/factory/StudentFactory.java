@@ -10,9 +10,11 @@ import ru.npcric.asparagus.trainerslog.adapter.web.errors.AlreadyExistException;
 import ru.npcric.asparagus.trainerslog.adapter.web.errors.UserNotFoundException;
 import ru.npcric.asparagus.trainerslog.domain.StudentEntity;
 import ru.npcric.asparagus.trainerslog.domain.TicketEntity;
+import ru.npcric.asparagus.trainerslog.domain.context.StudentContext;
 import ru.npcric.asparagus.trainerslog.domain.user.UserEntity;
 import ru.npcric.asparagus.trainerslog.domain.user.UserRole;
 import ru.npcric.asparagus.trainerslog.service.TicketService;
+import ru.npcric.asparagus.trainerslog.service.factory.common.BaseFactory;
 
 import java.util.Optional;
 
@@ -20,11 +22,12 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
-public class StudentFactory {
+public class StudentFactory implements BaseFactory<StudentDTO> {
     UserRepository userRepository;
     TicketService ticketService;
-    int INITIAL_COST = 1000;
-    public StudentEntity.StudentContext createContext(StudentDTO studentDTO) {
+
+    @Override
+    public StudentContext createContext(StudentDTO studentDTO) {
         Optional<UserEntity> user = userRepository.findByUsername(studentDTO.username());
 
 
@@ -39,7 +42,7 @@ public class StudentFactory {
         userEntity.getAuthorities().remove(UserRole.ROLE_DEFAULT);
 
         //todo - засунуть в маппер
-        return new StudentEntity.StudentContext(
+        return new StudentContext(
                 ticketEntity,
                 studentDTO.fullName(),
                 studentDTO.sex(),

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.npcric.asparagus.trainerslog.domain.common.BaseEntity;
+import ru.npcric.asparagus.trainerslog.domain.context.FilialContext;
 
 import java.util.List;
 
@@ -29,8 +30,5 @@ public class FilialEntity extends BaseEntity {
 
     public static FilialEntity getFilialWithDefaultName(FilialContext context){
         return new FilialEntity("Школа Айкидо", context.address(), null);
-    }
-
-    public record FilialContext(String name, String address) {
     }
 }

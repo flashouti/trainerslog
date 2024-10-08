@@ -10,6 +10,7 @@ import ru.npcric.asparagus.trainerslog.adapter.web.dto.request.cheque.ChequeCrea
 import ru.npcric.asparagus.trainerslog.domain.ChequeEntity;
 import ru.npcric.asparagus.trainerslog.domain.StudentEntity;
 import ru.npcric.asparagus.trainerslog.domain.user.UserEntity;
+import ru.npcric.asparagus.trainerslog.service.factory.common.BaseFactory;
 
 import java.util.Optional;
 
