@@ -13,17 +13,18 @@ import org.springframework.stereotype.Component;
 import ru.npcric.asparagus.trainerslog.adapter.repository.TrainingRepository;
 import ru.npcric.asparagus.trainerslog.domain.TrainingEntity;
 import ru.npcric.asparagus.trainerslog.service.TrainingService;
+import ru.npcric.asparagus.trainerslog.service.logger.LoggerAdapter;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Log4j2
 @EnableAsync
 @Component
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class TrainingScheduler {
     TrainingRepository trainingRepository;
+    private final LoggerAdapter logger = new LoggerAdapter(TrainingScheduler.class);
 
     @SchedulerLock(name = "duplicateLastWeekTrainings")
     //Каждый понедельник в 00:01
@@ -31,7 +32,7 @@ public class TrainingScheduler {
     @SneakyThrows
     @Transactional
     public void autoCreateTrainings() {
-        log.info("Scheduler duplicateLastWeekTrainings start");
+        logger.logInfo("Scheduler duplicateLastWeekTrainings start");
 
         LocalDateTime nowTime = LocalDateTime.now();
         List<TrainingEntity> trainingEntitiesOfLastWeek = trainingRepository.findTrainingsForThePastWeek(nowTime.minusWeeks(1), nowTime);
@@ -43,6 +44,6 @@ public class TrainingScheduler {
             trainingRepository.save(newTraining);
         }
 
-        log.info("Scheduler duplicateLastWeekTrainings end");
+        logger.logInfo("Scheduler duplicateLastWeekTrainings end");
     }
 }
