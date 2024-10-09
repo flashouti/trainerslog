@@ -1,6 +1,5 @@
 # Задание 2. Singleton
-
-В этом разделе описан класс Logger, который реализует паттерн проектирования Singleton
+В этом разделе описан класс Logger (ru.npcric.asparagus.trainerslog.service.logger), который реализует паттерн проектирования Singleton
 
 ## Причины выбора Singleton для класса Logger
 1. Единая точка доступа:
@@ -66,6 +65,7 @@ https://github.com/flashouti/trainerslog/commit/15a4a13909110b04fe859cc91663f7e9
 https://github.com/flashouti/trainerslog/commit/49fd7ba4fdf761fda435c92dcc259f57199a6658)
 
 # Задание 3. Prototype
+(ru.npcric.asparagus.trainerslog.adapter.web.dto.request.filial)
 
 ## Причины выбора паттерна Prototype для класса FilialDTO
 1. Упрощение создания объектов: Паттерн Prototype позволяет создавать новые объекты, копируя существующие. В нашем случае будет создавать много объектов класса FilialDTO
@@ -78,7 +78,8 @@ https://github.com/flashouti/trainerslog/commit/49fd7ba4fdf761fda435c92dcc259f57
 
 # Задание 4. Static factory method 
 
-## Причины выбора паттерна SFM для класса FilialEntity
+## Причины выбора паттерна SFM для класса FilialEntity  
+(ru.npcric.asparagus.trainerslog.domain)
 
 1. Частое создание экзампляра с заданными полями (дефолтным именем для всех филлиалов, различаются только адреса) - удобно вынести в отдельный метод
 2. Читаемость и гибкость кода
@@ -89,7 +90,7 @@ https://github.com/flashouti/trainerslog/commit/49fd7ba4fdf761fda435c92dcc259f57
 
 
 # Задание 5. Реализация паттерна Builder 
-Реализовал паттерн Builder для класса TicketEntity в классе TicketBuilder
+Реализовал паттерн Builder для класса TicketEntity в классе TicketBuilder в пакете ru.npcric.asparagus.trainerslog.domain
 
 ## Причины выбора паттерна Builder для класса TicketEntity
 1. Есть вариация создания объектов с разными наборами полей - при реализации паттерна код становится более гибкий
@@ -101,3 +102,27 @@ https://github.com/flashouti/trainerslog/commit/49fd7ba4fdf761fda435c92dcc259f57
 2. В классе TicketBuilder методы назначают поля текущему объекту и возвращают объект
 3. В классе TicketBuilder есть метод build() который возращает объект с назначенными полями
 4. В классе TicketEntity есть метод builder(), который возращает новый объект класса TicketBuilder
+
+
+# Задание 7. Реализация паттерна Abstract Factory
+Реализовал паттерн Abstract Factory в классе BaseFactory в пакете ru.npcric.asparagus.trainerslog.service.factory.common
+
+## Признаки реализации паттерна Abstract Factory для класса Base Factory
+1. Абстрактный продукт - BaseContext
+2. Конкретные продукты - CoachContext, StudentContext, FilialContext. Реализуют интерфейс BaseContext
+3.  Абстрактная фабрика - BaseFactory, абстраный метод - createContext()
+4.  Конкретная фабрика - CoachFactory, StudentFactory, FilialFactory. Они реализуют метод createContext()
+5.  Использование - в сервисах
+
+# Задание 8. Реализация паттерна Adapter
+Реализовал паттерн Adapter в классе LoggerAdapter в пакете ru.npcric.asparagus.trainerslog.service.logger
+
+## Причины реализации 
+1. Есть удобный интерфейс MyLogger, который имеет понятные по названию методы и класс Logger из пакета java.util.logging, названия методов которые не расскрывают полностью назначение методов - в качестве удобства раелизовал класс LoggerAdapter
+
+## Признаки 
+1. LoggerAdapter реализует интерфейс MyLogger, с классом Logger используется связь композиция  - объект класса инициализируется в конструкторе
+2. В методах адаптера совмещается логика двух классов
+
+
+
