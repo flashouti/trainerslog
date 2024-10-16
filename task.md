@@ -125,4 +125,14 @@ https://github.com/flashouti/trainerslog/commit/49fd7ba4fdf761fda435c92dcc259f57
 2. В методах адаптера совмещается логика двух классов
 
 
+# Задание 9. Реализация паттерна Builder
+Реализовал паттерн Builder в классе Notification в пакете package ru.npcric.asparagus.trainerslog.service.notification;
+
+## Причины реализации
+1. Количество классов наследников от классов Notification и MessageSender может быстро расти а вместе с тем и их "комбинации"
+
+## Признаки реализации 
+1. Классы родители (Notification и MessageSender) и их наследники, количество которых может быстро расти
+2. В классе Notification использутеся связь композиция с классом MessageSender (разбиение иерархии на две независимых)
+
 
