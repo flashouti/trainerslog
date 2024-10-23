@@ -1,6 +1,6 @@
 package ru.npcric.asparagus.trainerslog.service.notification;
 
-//Реализация паттерна Builder
+//Реализация паттерна Bridge
 public abstract class Notification {
     protected MessageSender messageSender;
 

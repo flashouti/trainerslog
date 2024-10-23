@@ -125,8 +125,8 @@ https://github.com/flashouti/trainerslog/commit/49fd7ba4fdf761fda435c92dcc259f57
 2. В методах адаптера совмещается логика двух классов
 
 
-# Задание 9. Реализация паттерна Builder
-Реализовал паттерн Builder в классе Notification в пакете package ru.npcric.asparagus.trainerslog.service.notification;
+# Задание 9. Реализация паттерна Bridge
+Реализовал паттерн Bridge в классе Notification в пакете package ru.npcric.asparagus.trainerslog.service.notification;
 
 ## Причины реализации
 1. Количество классов наследников от классов Notification и MessageSender может быстро расти а вместе с тем и их "комбинации"
@@ -134,5 +134,21 @@ https://github.com/flashouti/trainerslog/commit/49fd7ba4fdf761fda435c92dcc259f57
 ## Признаки реализации 
 1. Классы родители (Notification и MessageSender) и их наследники, количество которых может быстро расти
 2. В классе Notification использутеся связь композиция с классом MessageSender (разбиение иерархии на две независимых)
+
+# Задание 10. Реализация паттерна Composite
+Реализовал паттерн Composite в классе DocumentComponent в пакете ru.npcric.asparagus.trainerslog.service.document;
+
+## Причины реализации
+1. У нас есть система управления документами, где документы могут содержать как текстовые блоки, так и другие документы. 
+При этом текстовые блоки не могут содержать документы иои другие текстовые блоки. Для представления этой структуры подходит древовидная структура,
+которую можно реализовать используя паттерн Composite
+
+## Признаки реализации 
+1. Классы Document и TextBlock реализуют один интерфейс DocumentComponent 
+2. Класс Document при этом является узлом в древовидной структуре, так как имеет поле со списком дочерних объектов DocumentComponent,
+а также методы по добавлению и удалению объекта DocumentComponent из списка
+3. Класс TextBlock при этом является листом в древовидной структуре, так как не имеет поля со списком объектов DocumentComponent,
+а в реализации методов addComponent() и removeComponent() выбрасывается исключение 
+
 
 
