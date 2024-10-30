@@ -95,6 +95,7 @@ public class SecurityConfig {
 
 
 
+    //Использование паттерна Facade
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer.configurationSource(corsConfigurationSource()))
