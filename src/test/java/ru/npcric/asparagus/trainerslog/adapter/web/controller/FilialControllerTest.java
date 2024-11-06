@@ -1,6 +1,5 @@
 package ru.npcric.asparagus.trainerslog.adapter.web.controller;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import ru.npcric.asparagus.trainerslog.adapter.web.dto.request.filial.FilialDTO;
 import ru.npcric.asparagus.trainerslog.adapter.web.dto.response.filial.FilialSmallResponse;
-import ru.npcric.asparagus.trainerslog.service.FilialService;
+import ru.npcric.asparagus.trainerslog.service.filial.FilialService;
 
 import java.util.List;
 

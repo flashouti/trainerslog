@@ -171,3 +171,11 @@ https://github.com/flashouti/trainerslog/commit/49fd7ba4fdf761fda435c92dcc259f57
 2. Метод filterChain инкапсулирует множество вызовов методов, связанных с настройкой безопасности (например, CORS, CSRF, аутентификация и авторизация)
 3. Фасад взаимодействует с несколькими подсистемами (например, CORS, CSRF, аутентификация), но предоставляет единую точку доступа для конфигурации
 
+
+## Задание 14
+Реализовал паттерн Proxy в классе FilialServiceProxy в пакете ru.npcric.asparagus.trainerslog.service.filial
+
+## Причины реализации
+1. Классы FilialService и FilialServiceProxy реализуют один интерфейс FilialServiceInterface
+2. Класс FilialServiceProxy содержит экземпляр класса FilialService и использует его для вызова реализации метода родителя в своих методах
+3. Метод getAll реализует сам FilialServiceProxy

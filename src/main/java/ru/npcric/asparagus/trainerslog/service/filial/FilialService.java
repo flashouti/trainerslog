@@ -1,10 +1,9 @@
-package ru.npcric.asparagus.trainerslog.service;
+package ru.npcric.asparagus.trainerslog.service.filial;
 
 import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.npcric.asparagus.trainerslog.adapter.repository.FilialRepository;
 import ru.npcric.asparagus.trainerslog.adapter.web.dto.request.filial.FilialDTO;
@@ -19,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @Transactional
-public class FilialService {
+public class FilialService implements FilialServiceInterface{
     FilialRepository filialRepository;
     FilialFactory filialFactory;
 

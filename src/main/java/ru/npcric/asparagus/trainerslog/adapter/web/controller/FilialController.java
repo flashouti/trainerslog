@@ -2,7 +2,6 @@ package ru.npcric.asparagus.trainerslog.adapter.web.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.npcric.asparagus.trainerslog.adapter.web.dto.request.filial.FilialDTO;
 import ru.npcric.asparagus.trainerslog.adapter.web.dto.response.filial.FilialSmallResponse;
-import ru.npcric.asparagus.trainerslog.service.FilialService;
+import ru.npcric.asparagus.trainerslog.service.filial.FilialService;
 
 import java.util.List;
 
