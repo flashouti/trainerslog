@@ -175,7 +175,17 @@ https://github.com/flashouti/trainerslog/commit/49fd7ba4fdf761fda435c92dcc259f57
 ## Задание 14
 Реализовал паттерн Proxy в классе FilialServiceProxy в пакете ru.npcric.asparagus.trainerslog.service.filial
 
-## Причины реализации
+## Признаки реализации
 1. Классы FilialService и FilialServiceProxy реализуют один интерфейс FilialServiceInterface
 2. Класс FilialServiceProxy содержит экземпляр класса FilialService и использует его для вызова реализации метода родителя в своих методах
 3. Метод getAll реализует сам FilialServiceProxy
+
+
+## Задание 15
+Реализовал паттерн COR в классе Logger в пакете ru.npcric.asparagus.trainerslog.service.logger
+
+## Признаки реализации
+1. Есть абстрактный класс Logger, который является обработчиком, содержит ссылку на следующий обработчик
+2. Конкретные обработчики - ConsoleLogger, FileLogger, LoggerChain, наследуются от абстрактного класса Logger
+3. Все конкретные обработчики реализуют хранение и вызов следующего обработчика 
+4. Существует вспомогательный класс LoggerChain - использующийся для хранения нашей цепочки 
