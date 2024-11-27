@@ -1,25 +1,40 @@
 package ru.npcric.asparagus.trainerslog.service.document;
 
-import java.util.ArrayList;
-import java.util.List;
+//Реализация паттерна Memento
+public class Document {
+    private String content;
 
-public class Document implements DocumentComponent {
-    private List<DocumentComponent> components = new ArrayList<>();
-
-    @Override
-    public void addComponent(DocumentComponent component) {
-        components.add(component);
+    public Document(String content) {
+        this.content = content;
     }
 
-    @Override
-    public void removeComponent(DocumentComponent component) {
-        components.remove(component);
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    @Override
-    public void print() {
-        for (DocumentComponent component : components) {
-            component.print();
+    public String getContent() {
+        return content;
+    }
+
+    public Memento save() {
+        return new Memento(content);
+    }
+
+    public void restore(Memento memento) {
+        this.content = memento.getContent();
+    }
+
+    //Реализация паттерна Memento
+    public static class Memento {
+        private final String content;
+
+        private Memento(String content) {
+            this.content = content;
+        }
+
+        private String getContent() {
+            return content;
         }
     }
 }
+
