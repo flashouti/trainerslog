@@ -259,3 +259,16 @@ https://github.com/flashouti/trainerslog/commit/49fd7ba4fdf761fda435c92dcc259f57
 Уведомление Наблюдателей
 
 3. При изменении состояния субъекта вызывается метод notifyObservers(), который проходит по списку наблюдателей и вызывает их метод update().
+
+
+## Задание 22
+Реализовал паттерн State в интерфейсе OrderState в пакете ru.npcric.asparagus.trainerslog.service.order;
+
+## Признаки реализации 
+1. Интерфейс OrderState - абстрактное состояние 
+2. Классы CanceledOrderState, CompletedOrderState, InProgressOrderState, NewOrderState - конкретные состояния, реализующие интерфейс OrderState
+3. Контекстом является класс Order, где существуют методы по получению определнного состояния и их изменения
+
+
+## Задание 23
+
